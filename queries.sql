@@ -1,6 +1,6 @@
 USE mydb;
 
--- 1. Вкладений запит в SELECT.
+
 SELECT od.*,
        (SELECT o.customer_id
         FROM orders AS o
@@ -8,7 +8,7 @@ SELECT od.*,
 FROM order_details AS od
 ORDER BY od.id;
 
--- 2. Вкладений запит в WHERE.
+
 SELECT od.*
 FROM order_details AS od
 WHERE od.order_id IN (
@@ -18,7 +18,7 @@ WHERE od.order_id IN (
 )
 ORDER BY od.id;
 
--- 3. Вкладений запит в FROM.
+
 SELECT filtered.order_id,
        AVG(filtered.quantity) AS average_quantity
 FROM (
@@ -29,7 +29,7 @@ FROM (
 GROUP BY filtered.order_id
 ORDER BY filtered.order_id;
 
--- 4. Повторення завдання 3 через WITH (CTE temp).
+
 WITH temp AS (
     SELECT order_id, quantity
     FROM order_details
@@ -41,7 +41,7 @@ FROM temp
 GROUP BY temp.order_id
 ORDER BY temp.order_id;
 
--- 5. Функція ділення: два параметри FLOAT і результат FLOAT.
+
 DROP FUNCTION IF EXISTS hw05_divide_float;
 
 CREATE FUNCTION hw05_divide_float(p_numerator FLOAT, p_denominator FLOAT)
